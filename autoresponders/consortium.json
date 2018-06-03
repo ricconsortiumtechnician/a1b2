@@ -1,0 +1,38 @@
+{
+  "name": "consortium",
+  "embed": {
+    "author": {
+      "name": "The Consortium"
+    },
+    "title": "What is the Consortium",
+    "url": "https://www.roblox.com/My/Groups.aspx?gid=3584296",
+    "description": "The Consortium / RIC:C is the official development entity responsible for designing, manufacturing and maintaining all facilities and infrastructure bearing the seal of the Infantry - including the Automated System sending this message.",
+    "fields": [
+      {
+        "name": "\u200b",
+        "value": "\u200b",
+        "inline": true
+      },
+      {
+        "name": "How can I join the Consortium?",
+        "value": "The only way of entrance into the Consortium is by submitting a self-made application to the presiding Creative Director or by personal invitation.",
+        "inline": true
+      },
+      {
+        "name": "\u200b",
+        "value": "\u200b",
+        "inline": true
+      },
+      {
+        "name": "Do I have to be an active member in RIC to join?",
+        "value": "The Consortium accepts anyone who excels in their area of expertise. Staff who are not actively serving in the Infantry are categorised as Contractors.",
+        "inline": true
+      },
+      {
+        "name": "\u200b",
+        "value": "\u200b",
+        "inline": true
+      }
+    ]
+  }
+}
