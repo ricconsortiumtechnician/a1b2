@@ -35,7 +35,7 @@ bot.broadcast = async (message, guild, roles) => {
     roles = roles === undefined ? [] : roles;
     let channel = guild.channels.find('name', process.env.SHOUT_CHANNEL);
 
-    let discordRoles = parseRoles(roles, guild)
+    let discordRoles = bot.parseRoles(roles, guild)
     channel.send(discordRoles + message);
 };
 
