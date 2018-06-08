@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Private",
+    "abbreviation": "PVT",
+    "requiredPoints": -1,
+    "rankInGroup": 10,
+    "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
+  },
+  {
+    "name": "Private First Class",
+    "abbreviation": "PFC",
+    "requiredPoints": 0,
+    "rankInGroup": 20,
+    "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
+  },
+  {
+    "name": "Specialist",
+    "abbreviation": "SPC",
+    "requiredPoints": 5,
+    "rankInGroup": 30,
+    "thumbnail": "https://t3.rbxcdn.com/e65a008d328ee84736658dc10437a217"
+  },
+  {
+    "name": "Lance Corporal",
+    "abbreviation": "LCPL",
+    "requiredPoints": 20,
+    "rankInGroup": 40,
+    "thumbnail": "https://t4.rbxcdn.com/4c9da3f4ff893a8c5996e25365833bc1"
+  },
+  {
+    "name": "Corporal",
+    "abbreviation": "CPL",
+    "requiredPoints": 30,
+    "rankInGroup": 50,
+    "thumbnail": "https://t5.rbxcdn.com/4ec3505066662afb312f29175c6eb9a8"
+  },
+  {
+    "name": "Sergeant",
+    "abbreviation": "SGT",
+    "requiredPoints": 40,
+    "rankInGroup": 60,
+    "thumbnail": "https://t2.rbxcdn.com/a0a117a37e73277afc370847a994a649"
+  },
+  {
+    "name": "Staff Sergeant",
+    "abbreviation": "SSGT",
+    "requiredPoints": 50,
+    "rankInGroup": 70,
+    "thumbnail": "https://t2.rbxcdn.com/d2736469e61da33ee4cdb8933e320977"
+  },
+  {
+    "name": "Sergeant Major",
+    "abbreviation": "SGM",
+    "requiredPoints": 60,
+    "rankInGroup": 80,
+    "thumbnail": "https://t4.rbxcdn.com/a9db22c0fc73be393baec1272ba0d3e3"
+  },
+  {
+    "name": "Second Lieutenant",
+    "abbreviation": "2LT",
+    "requiredPoints": 70,
+    "rankInGroup": 90,
+    "thumbnail": "https://t5.rbxcdn.com/dfc2e4d72246f7c9b73c023fb72b9268"
+  },
+  {
+    "name": "First Lieutenant",
+    "abbreviation": "1LT",
+    "requiredPoints": 80,
+    "rankInGroup": 100,
+    "thumbnail": "https://t3.rbxcdn.com/54aa045874585be0e68337c568972404"
+  },
+  {
+    "name": "Captain",
+    "abbreviation": "CPT",
+    "requiredPoints": 80,
+    "rankInGroup": 110,
+    "thumbnail": "https://t3.rbxcdn.com/54aa045874585be0e68337c568972404"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "conf": {
+    "aliases": [
+      "getPoints",
+      "getpoints",
+      "getMerit",
+      "getmerit"
+    ],
+    "authorizedRoles": [
+      "@everyone"
+    ]
+  },
+  "help": {
+    "name": "merit",
+    "description": "Displays a user's merit progress",
+    "usage": "merit <username>"
+  },
+  "isPrivate": "%s is at the rank of **Private [PVT]**, to be promoted they need to attend a Basic Military Training. They can ask any Captain+ to assist them.",
+  "is2LT": "%s is at the rank of **Second Lieutenant [2LT]**, to be promoted they must apply to become an Officer Cadet (1LT) as part of the Officer Corps Academy. For further information they can contact a member of the Department of Progression.",
+  "higherThanCPT": "%s is too high of a rank to earn Merit. They must be promoted by decision of the Command Staff.",
+  "higherThan2LT": "%s is at the rank of **%s**, they must be promoted through the Officer Corps Academy. For further information they can contact a member of the Department of Progression.",
+  "authorName": "User: %s",
+  "authorIcon": "https://www.roblox.com/headshot-thumbnail/image?userId=%d&width=420&height=420&format=png",
+  "authorUrl": "https://www.roblox.com/users/%d",
+  "embedTitle": "Merit Amount",
+  "meritFieldName": "%d/%d earned, %d remaining until %s",
+  "meritFieldValue": "%d% total merit earned"
+}

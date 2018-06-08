@@ -3,6 +3,9 @@ const Discord = require('discord.js');
 
 const util = require('util');
 
+const res = require('../resources/strings/getEvents');
+
+
 // configure a JWT auth client
 let jwtClient = new google.auth.JWT(
     process.env.GOOGLE_API_EMAIL,
@@ -28,14 +31,14 @@ exports.run = async (bot, msg, args) => {
     timeZone = timeZone.toUpperCase();
 
     let embed = new Discord.RichEmbed()
-        .setAuthor('Event Calendar')
-        .setTitle(util.format('Today\'s scheduled events in %s', timeZone))
-        .setDescription('Be aware that the majority of events are impromptu and are not required to have advanced notice. Make sure to regularly check #broadcast for any unscheduled events.');
+        .setAuthor(res.authorName)
+        .setTitle(util.format(res.embedTitle, timeZone))
+        .setDescription(res.embedDescription);
 
     let events = await doGetEvents(timeZone);
 
     if (events.length === 0) {
-        embed.addField('There are no remaining events pre-scheduled for today!', '\u200b');
+        embed.addField(res.noEvents, '\u200b');
     } else {
         for (let i = 0; i < events.length; i++) {
             let event = events[i];
@@ -55,19 +58,10 @@ exports.run = async (bot, msg, args) => {
     }
 
     bot.sendEmbed(msg.channel, embed);
-    //msg.channel.send(embed);
 };
 
-exports.conf = {
-    aliases: ['getevents', 'events'],
-    authorizedRoles: ['@everyone']
-};
-
-exports.help = {
-    name: "getEvents",
-    description: "Shows how commands are used.",
-    usage: "addAlly [Abbreviation] [Ambassador tag] [Delegation tag] [Member tag]"
-};
+exports.conf = res.conf;
+exports.help = res.help;
 
 /**
  *
@@ -96,7 +90,7 @@ function doGetEvents(timeZone) {
             // Check timezone
             if (timeZone !== 'PST' && response.data.items[0] !== undefined) {
                 if (response.data.items[0].start.dateTime.endsWith('-07:00')) {
-                    reject('temp');
+                    reject(res.errors.timeZoneNotFound);
                 }
             }
 

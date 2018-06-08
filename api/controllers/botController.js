@@ -1,4 +1,5 @@
 const bot = require('../../bot');
+const roblox = require('../../businesslogic/roblox');
 
 class BotController {
 
@@ -24,7 +25,7 @@ class BotController {
         });
         //}
 
-        //robloxManager.shout(message);
+        roblox.shout(message);
 
         res.status(200);
         res.json('succes');

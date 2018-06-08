@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const res = require('./resources/strings/common');
+
 const fs = require("fs");
 
 const Discord = require("discord.js");
@@ -20,7 +22,7 @@ bot.autoResponders = new Discord.Collection();
 /**
  * Broadcasts a message to the discord.
  * @param message {string}
- * @param guild {Discord.Guild}
+ * @param guild {Guild}
  * @param roles {Array}
  * @returns {Promise<void>}
  */
@@ -37,15 +39,55 @@ bot.broadcast = async (message, guild, roles) => {
     channel.send(discordRoles + message);
 };
 
-bot.sendEmbed = (channel, embedData, color) => {
-    let lColor = color === undefined ? 0x5cb85c : color;
-
-    let embed = new Discord.RichEmbed(embedData)
-        .setColor(lColor)
-        .setFooter('ROBLOX Infantry Corps Automated System | Property of the Consortium');
+/**
+ *
+ * @param channel {TextChannel}
+ * @param embed {RichEmbed}
+ */
+bot.sendEmbed = (channel, embed) => {
+    if (!embed.color) embed.setColor(0x5cb85c);
+    if (!embed.footer) embed.setFooter('ROBLOX Infantry Corps Automated System | Property of the Consortium');
 
     channel.send(embed);
-}
+};
+
+/**
+ *
+ * @param msg {Message}
+ * @param embed {RichEmbed}
+ */
+bot.invalidArgument = (msg, embed) => {
+    if (!embed.author) embed.setAuthor('An error occurred.');
+    if (!embed.title) embed.setTitle(`${msg.member.displayName}, Invalid argument!`);
+    if (!embed.color) embed.setColor(0xcc0000);
+
+    bot.sendEmbed(msg.channel, embed)
+};
+
+bot.parseRoles = (roleArr, guild) => {
+    let roles = '';
+
+    for (let i = 0; i < roleArr.length; i++) {
+        let role;
+
+        if (roleArr[i] === 'here') {
+            role = '@here';
+        } else {
+            role = guild.roles.find('name', roleArr[i]);
+        }
+
+        if (role === undefined) {
+            throw{
+                type: "Invalid argument!",
+                message: "One of the given roles was not found."
+            }
+        }
+
+        roles += role.toString() + ' ';
+    }
+
+    return roles;
+};
 
 // Load commands
 fs.readdir("./cmds/", (err, files) => {
@@ -87,7 +129,10 @@ bot.on("message", msg => {
     let params = text.match(new RegExp(process.env.ARGUMENT_INFIX, "gi")).splice(1);
 
     if (bot.autoResponders.has(command)) {
-        bot.sendEmbed(msg.channel, new Discord.RichEmbed(bot.autoResponders.get(command)), 0xe6ad28);
+        let autoResponder = new Discord.RichEmbed(bot.autoResponders.get(command))
+            .setColor(0xe6ad28);
+
+        bot.sendEmbed(msg.channel, autoResponder);
         return;
     }
 
@@ -97,7 +142,9 @@ bot.on("message", msg => {
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
     }
+
     if (cmd) {
+        if (!authorize(msg.member.roles, cmd.conf.authorizedRoles)) return;
         cmd.run(bot, msg, params).catch(err => handleError(err, msg));
     }
 });
@@ -111,31 +158,31 @@ bot.on("warn", console.warn);
 
 bot.login(process.env.BOT_TOKEN);
 
-function parseRoles(roleArr, guild) {
-    let roles = '';
+function authorize(memberRoles, cmdRoles) {
+    let authorized = false;
 
-    for (let i = 0; i < roleArr.length; i++) {
-        let role;
+    for (let i = 0; i < cmdRoles.length; i++) {
+        let curRole = cmdRoles[i];
 
-        if (roleArr[i] === 'here') {
-            role = '@here';
-        } else {
-            role = guild.roles.find('name', roleArr[i]);
+        let temp = memberRoles.find('name', curRole);
+
+        if (temp) {
+            authorized = true;
         }
-
-        // TODO fix
-        if (role == undefined) {
-            throw 'temp'//throw resources.strings['shout'].errors['roleNotFound']
-        }
-
-        roles += role.toString() + ' ';
     }
 
-    return roles;
+    return authorized;
 }
 
 function handleError(err, msg) {
     log(err.stack);
+
+    if (err.message === "User not found") {
+        err = {
+            type: "Invalid argument!",
+            message: "The user was not found"
+        }
+    }
 
     let embed = new Discord.RichEmbed();
     embed.setAuthor("An error occurred")

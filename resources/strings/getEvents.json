@@ -1,0 +1,27 @@
+{
+  "conf": {
+    "aliases": [
+      "getevents",
+      "events"
+    ],
+    "authorizedRoles": [
+      "@everyone"
+    ]
+  },
+  "help": {
+    "name": "getEvents",
+    "description": "Displays a list of the current days upcomming events as documented by the Event Calendar. Typically used to check the time of an upcomming training.",
+    "usage": "getevents [time zone]",
+    "notes": "If no timezone is entered, the calendar will display in Eastern Standard Time by default."
+  },
+  "errors": {
+    "timeZoneNotFound": {
+      "type": "Invalid argument!",
+      "message": "The supplied timezone does not exist."
+    }
+  },
+  "authorName": "Event Calendar",
+  "embedTitle": "Today's scheduled events in %s",
+  "embedDescription": "Be aware that the majority of events are impromptu and are not required to have advanced notice. Make sure to regularly check #broadcast for any unscheduled events.",
+  "noEvents": "There are no remaining events pre-scheduled for today!"
+}

@@ -1,0 +1,30 @@
+{
+  "conf":{
+    "aliases": [
+      "broadcast"
+    ],
+    "authorizedRoles": [
+      "Major",
+      "Colonel",
+      "General",
+      "Adjutant General",
+      "Chief of Staff",
+      "Commander"
+    ]
+  },
+  "help":{
+    "name": "shout",
+    "description": "Posts a custom message to the discord #broadcast channel and to the group shout simultaneously. Typically used for broadcasting events.",
+    "usage": "shout <\"message\"> [<\"role1, role2\">]",
+    "notes": "To clear a shout once an event is over type, \">shout clear\"\n The roles default to @everyone"
+  },
+  "errors":{
+    "msgTooLong":{
+      "type": "Invalid argument!",
+      "message": "The message is too big for roblox. Please enter it manually in the broadcast channel."
+    }
+  },
+  "authorName":"Broadcast Feed",
+  "embedTitle":"%s has issued a broadcast to the group shout & broadcast channel.",
+  "embedDescription":"'%s'"
+}

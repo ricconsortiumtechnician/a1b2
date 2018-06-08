@@ -1,0 +1,16 @@
+{
+  "name": "reportbugs",
+  "embed": {
+    "author": {
+      "name": "Reporting Bugs"
+    },
+    "title": "Noticed a bug in the automated system?",
+    "description": "Any and all bugs, glitches or errors in the system should be reported to the Creative Director of the Consortium via discord private messages - make sure to include a screenshot of the command and the error message received from the system.",
+    "fields": [
+      {
+        "name": "Keep in mind that RICAS remains in Alpha - bugs will occur!",
+        "value": "\u200b"
+      }
+    ]
+  }
+}

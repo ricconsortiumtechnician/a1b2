@@ -1,22 +1,43 @@
+const Discord = require('discord.js');
+
 exports.run = async (bot, msg, args) => {
+    let embed = new Discord.RichEmbed();
     if (!args[0]) {
-        msg.channel.send(`= Command List =\n\n[Use ?help <commandname> for details]\n\n${bot.commands.map(c => `${c.help.name}:: ${c.help.description}`).join("\n")}`, {code: "text"});
+        embed.setAuthor('Displaying command list')
+            .setDescription('Use >help <commandname> for details');
+
+        bot.commands.map(cmd => embed.addField(cmd.help.name, cmd.help.description));
     } else {
         let command = args[0];
-        if (bot.commands.has(command)) {
-            command = bot.commands.get(command);
-            msg.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage::${command.help.usage}`, {code: "text"});
+        if (!bot.commands.has(command)) return;
+
+        command = bot.commands.get(command);
+
+        embed.setAuthor(`Displaying information on the command: ${command.help.name}`)
+            .addField('Description:', command.help.description)
+            .addField('Usage:', command.help.usage);
+
+        if (command.help.notes) {
+            embed.addField('Additional information:', command.help.notes);
         }
     }
+    bot.sendEmbed(msg.channel, embed);
 };
 
 exports.conf = {
     aliases: [],
-    authorizedRoles: ['@everyone']
+    authorizedRoles: [
+        'Major',
+        'Colonel',
+        'General',
+        'Adjutant General',
+        'Chief of Staff',
+        'Commander'
+    ]
 };
 
 exports.help = {
-    name : "help",
+    name: "help",
     description: "Shows how commands are used.",
     usage: "help [command]"
 };

@@ -1,69 +1,35 @@
+const util = require('util');
+
+const cmdHelper = require('../businesslogic/helpers/commandHelper');
+
+const Discord = require('discord.js');
 const roblox = require('../businesslogic/roblox');
+
+const res = require('../resources/strings/shout');
 
 exports.run = async (bot, msg, args) => {
     // Check minimum amount of parameters.
-    if (args.length < 1) tooFewArguments();
+    if (args.length < 1) cmdHelper.tooFewArguments(this);
 
-    let message = removeColons(args[0]);
+    let message = cmdHelper.removeColons(args[0]);
 
     // Check if message isn't too long for roblox
-    if (message.length > 256) messageTooLong();
+    if (message.length > 256) throw res.errors.msgTooLong;
 
-    let roles = args[1] !== undefined ? removeColons(args[1]) : '@everyone';
+    let roles = args[1] !== undefined ? cmdHelper.removeColons(args[1]) : '@everyone';
     roles = roles.split(', ');
 
     await bot.broadcast(message, msg.member.guild, roles);
     roblox.shout(message);
 
-    bot.sendEmbed(msg.channel, response(msg.member.displayName, message));
+    const embed = new Discord.RichEmbed()
+        .setAuthor(res.authorName)
+        .setTitle(util.format(res.embedTitle, msg.member.displayName))
+        .setDescription(util.format(res.embedDescription, message));
+
+    bot.sendEmbed(msg.channel, embed);
 };
 
-exports.conf = {
-    aliases: ['broadcast'],
-    authorizedRoles: ['@everyone']
-};
+exports.conf = res.conf;
 
-exports.help = {
-    name: "shout",
-    description: "Shows how commands are used.",
-    usage: "shout \"message\" [\"role1, role2\"]"
-};
-
-function response(sender, message) {
-    return {
-        author: {
-            name: "Broadcast Feed"
-        },
-        title: `${sender} has issued a broadcast to the group shout & broadcast channel.`,
-        description: `"${message}"`
-    }
-}
-
-function tooFewArguments() {
-    throw {
-        type: "Too few arguments!",
-        message: "The correct usage for this command is: " + exports.help.usage
-    };
-}
-
-function messageTooLong() {
-    throw {
-        type: "Invalid argument!",
-        message: "The message is too big for roblox. Please enter it manually in the broadcast channel."
-    };
-}
-
-/**
- * Removes the colons from a string
- * @param str {string}
- * @returns {string} The string given without colons
- */
-function removeColons(str) {
-    if (str !== undefined) {
-        if (str.charAt(0) === '"' && str.charAt(str.length - 1) === '"') {
-            str = str.slice(1, str.length - 1);
-        }
-    }
-
-    return str;
-}
+exports.help = res.help;

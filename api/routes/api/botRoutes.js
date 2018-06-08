@@ -1,14 +1,14 @@
 /* Load Modules */
 const express = require('express');
-const router = express.Router();
+/**
+ * @type {Router|router|*}
+ */
+const router = express.Router({});
 
 /* Load controller */
 const BotController = require('../../controllers/botController');
 const botController = new BotController();
 
-/**
- * User Entity routes
- */
 router.post('/shout', function (req, res) {
     botController.shout(req, res);
 });

@@ -16,6 +16,7 @@
     "google-auth-library": "^0.12.0",
     "googleapis": "^25.0.0",
     "moment": "^2.22.2",
+    "mongodb": "^3.0.10",
     "roblox-js": "^4.0.2"
   }
 }

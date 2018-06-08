@@ -1,0 +1,26 @@
+{
+  "conf": {
+    "aliases": [],
+    "authorizedRoles": [
+      "Major",
+      "Colonel",
+      "General",
+      "Adjutant General",
+      "Chief of Staff",
+      "Commander"
+    ]
+  },
+  "help": {
+    "name": "graduate",
+    "description": "Graduates a PVT to PFC.",
+    "usage": "graduate <user user ...>"
+  },
+  "authorName": "Graduation report",
+  "embedTitle": "Issued by %s",
+  "embedDescription": "The following is a report of all users you tried to graduate.",
+  "graduated": "The following user(s) were graduated:",
+  "notFound": "",
+  "notInGroup": "",
+  "invalidRank": "",
+  "noGraduated": "**No users were graduated**"
+}
