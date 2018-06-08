@@ -11,7 +11,7 @@
   "help": {
     "name": "getEvents",
     "description": "Displays a list of the current days upcomming events as documented by the Event Calendar. Typically used to check the time of an upcomming training.",
-    "usage": "getevents [time zone]",
+    "usage": "getevents [<time zone>]",
     "notes": "If no timezone is entered, the calendar will display in Eastern Standard Time by default."
   },
   "errors": {

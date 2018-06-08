@@ -1,3 +1,5 @@
+const errors = require('../model/errors');
+
 const roblox = require('../businesslogic/roblox');
 
 const userDao = require('../datastorage/userDao');
@@ -12,20 +14,26 @@ class UserManager {
     /**
      *
      * @param robloxId {int}
-     * @returns {Promise<void>}
+     * @param [rank]
+     * @returns {Promise<User>}
      */
-    async findOrCreateUser(robloxId) {
+    async findOrCreateUser(robloxId, rank) {
         let user = await userDao.findById(robloxId);
+        rank = rank !== undefined ? rank : await roblox.lib.getRankInGroup(process.env.GROUP_ID, robloxId);
+
+        if (isNaN(rank)) throw new errors.invalidArgument("idNotFound");
+        if (rank === 0) throw new errors.invalidArgument("notInGroup");
+        if (getRank('Private') === rank || rank >= getRank('Second Lieutenant')) throw new errors.invalidArgument("invalidRank");
 
         if (user === undefined) {
-            let rank = await roblox.lib.getRankInGroup(process.env.GROUP_ID, robloxId);
-
-            if (isNaN(rank)) throw "idNotFound";
-            if (rank === 0) throw "notInGroup";
-            if (getRank('Private') === rank || rank >= getRank('Second Lieutenant')) throw "invalidRank";
-
             user = new User(robloxId, 0, rank, true, '');
             userDao.create(user);
+        } else{
+            // Set merit to 0 and update rank if the rank in the database isn't the same as on roblox
+            if(user.rank !== rank){
+                user.rank = rank;
+                user.points = 0;
+            }
         }
 
         return user;
@@ -49,6 +57,30 @@ class UserManager {
         user.points = 0;
         user.rank = rankData.nextRank.rankInGroup;
         roblox.lib.promote(process.env.GROUP_ID, user._id);
+        userDao.update(user);
+
+        return true;
+    }
+
+    deductPoints(user, amount){
+        const rankData = getRankData(user.rank);
+
+        user.points -= amount;
+
+        if(user.points >= 0){
+            userDao.update(user);
+            return false;
+        }
+
+        user.points = 0;
+
+        if (getRank("Private First Class") === rankData.curRank.rankInGroup) {
+            userDao.update(user);
+            throw new errors.invalidArgument('belowZero');
+        }
+
+        roblox.lib.demote(process.env.GROUP_ID, user._id);
+        user.rank = rankData.prevRank.rankInGroup;
         userDao.update(user);
 
         return true;

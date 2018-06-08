@@ -19,8 +19,8 @@
   "embedTitle": "Issued by %s",
   "embedDescription": "The following is a report of all users you tried to graduate.",
   "graduated": "The following user(s) were graduated:",
-  "notFound": "",
-  "notInGroup": "",
-  "invalidRank": "",
+  "notFound": "The following user(s) were not found:",
+  "notInGroup": "The following user(s) are not in RIC:",
+  "invalidRank": "The following user(s) are a too high rank:",
   "noGraduated": "**No users were graduated**"
 }

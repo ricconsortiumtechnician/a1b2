@@ -48,7 +48,7 @@ bot.sendEmbed = (channel, embed) => {
     if (!embed.color) embed.setColor(0x5cb85c);
     if (!embed.footer) embed.setFooter('ROBLOX Infantry Corps Automated System | Property of the Consortium');
 
-    channel.send(embed);
+    return channel.send(embed);
 };
 
 /**
@@ -186,7 +186,7 @@ function handleError(err, msg) {
 
     let embed = new Discord.RichEmbed();
     embed.setAuthor("An error occurred")
-        .setTitle(msg.member.displayName + ", " + err.type)
+        .setTitle(msg.member.displayName + ", " + err.name)
         .setDescription(err.message)
         .setColor(0xcc0000)
         .setFooter("ROBLOX Infantry Corps Automated System | Property of the Consortium");

@@ -15,7 +15,7 @@
   "help":{
     "name": "shout",
     "description": "Posts a custom message to the discord #broadcast channel and to the group shout simultaneously. Typically used for broadcasting events.",
-    "usage": "shout <\"message\"> [<\"role1, role2\">]",
+    "usage": "shout \"<message>\" [\"<role1, role2>\"]",
     "notes": "To clear a shout once an event is over type, \">shout clear\"\n The roles default to @everyone"
   },
   "errors":{

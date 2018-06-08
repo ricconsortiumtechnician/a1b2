@@ -5,7 +5,6 @@ const util = require('util');
 
 const res = require('../resources/strings/getEvents');
 
-
 // configure a JWT auth client
 let jwtClient = new google.auth.JWT(
     process.env.GOOGLE_API_EMAIL,

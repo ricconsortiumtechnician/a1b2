@@ -1,12 +1,11 @@
 const util = require('util');
 
+const errors = require('../../model/errors');
+
 const res = require('../../resources/strings/common');
 
 exports.tooFewArguments = (cmd) => {
-    throw {
-        type: res.errors.tooFewArguments.type,
-        message: util.format(res.errors.tooFewArguments.message, cmd.help.usage)
-    };
+    throw new errors.tooFewArguments(util.format(res.errors.tooFewArguments.message, cmd.help.usage));
 };
 
 /**

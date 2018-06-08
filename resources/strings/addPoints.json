@@ -1,0 +1,64 @@
+{
+  "conf": {
+    "aliases": [
+      "addMerit",
+      "addmerit",
+      "addpoints"
+    ],
+    "authorizedRoles": [
+      "Major",
+      "Command Staff"
+    ]
+  },
+  "help": {
+    "name": "addPoints",
+    "description": "Adds merit to the specified user",
+    "usage": "addmerit <username, username...> <amount> \"<reason>\""
+  },
+  "errors": {
+    "amountInvalid": "Amount must be between -4 and 4 and cannot be 0.",
+    "reasonInvalid": "Please enter a reason"
+  },
+  "reportAuthor": "Merit Augmentation Report",
+  "reportTitle": "Issued by: %s",
+  "reportDescription": "The following is a report on all users you tried to augment.",
+  "affected": "The following users were affected",
+  "noAffected": "**No users affected**",
+  "rankChanged": "The following user(s) rank(s) were changed:",
+  "notFound": "The following user(s) were not found:",
+  "notInGroup": "The following user(s) are not in RIC:",
+  "invalidRank": "The following user(s) are not in the merit system:",
+  "belowZero": "The following user(s) can not get merit below 0:",
+  "eventTypeDescription": [
+    ":regional_indicator_i: | Informational Training",
+    ":regional_indicator_f: | Combat Readiness Training",
+    ":regional_indicator_c: | Community Event",
+    ":regional_indicator_j: | Joint Event",
+    ":x: | Cancel",
+    "",
+    "React below with the appropriate response."
+  ],
+  "eventTypeTitle": "Please clarify the type of event the Merit is being added for",
+  "eventTypeAuthor": "Merit Index: Merit Augmentation",
+  "canceled":"command canceled",
+  "infoTrain":"Informational Training",
+  "combatReadiness": "Combat Readiness Training",
+  "communityEvent": "Community Event",
+  "jointEvent": "Joint Event",
+  "canceledIcon":"❌",
+  "infoIcon":"🇮",
+  "combatReadinessIcon": "🇫",
+  "communityEventIcon": "🇨",
+  "jointEventIcon": "🇯",
+  "robloxHeadshot": "https://www.roblox.com/headshot-thumbnail/image?userId=%d&width=420&height=420&format=png",
+  "robloxUrl": "https://www.roblox.com/users/%d",
+  "meritLogAuthor": "User: %s",
+  "promotionLogTitle": "%s has been promoted",
+  "promotionLogDescription": "%s - %s",
+  "rankTransition": "Rank Transition",
+  "reason": "Reason",
+  "meritAutoPromo": "Auto-promotion through Merit",
+  "successMeritFieldName": "%d/%d earned, %d merit remaining until %s",
+  "successMeritFieldValue": "%d%% total merit earned",
+  "successTitle": "Merit Amount"
+}
