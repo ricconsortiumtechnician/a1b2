@@ -31,6 +31,12 @@ class UserManager {
         return user;
     }
 
+    /**
+     *
+     * @param user {User}
+     * @param amount {int}
+     * @returns {boolean}
+     */
     addPoints(user, amount) {
         const rankData = getRankData(user.rank);
         user.points += amount;

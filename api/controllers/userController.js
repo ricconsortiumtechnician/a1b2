@@ -10,7 +10,7 @@ class UserController {
     addMerit(req, res) {
         if(!validate(req, res)) return;
 
-        let amount = req.body.amount;
+        let amount = parseInt(req.body.amount);
 
         userManager.findOrCreateUser(parseInt(req.params.robloxId))
             .then((user) => {
