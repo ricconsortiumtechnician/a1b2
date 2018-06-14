@@ -39,7 +39,7 @@ exports.run = async (bot, msg, args) => {
 
     let response = new discord.RichEmbed()
         .setAuthor(res.reportAuthor)
-        .setTitle(util.format(res.reportTitle ,msg.member.displayName))
+        .setTitle(util.format(res.reportTitle, msg.member.displayName))
         .setDescription(res.reportDescription);
 
     if (report.success.length === 0) {
@@ -176,6 +176,7 @@ async function getEventType(msg, bot) {
         || reaction.emoji.name === res.communityEventIcon
         || reaction.emoji.name === res.jointEventIcon
         || reaction.emoji.name === res.canceledIcon
+        || reaction.emoji.name === res.manualHQMeritIcon
     ) && user.id === msg.author.id;
 
     let desc = res.eventTypeDescription.join('\n');
@@ -205,6 +206,8 @@ async function getEventType(msg, bot) {
             return res.communityEvent;
         case res.jointEventIcon:
             return res.jointEvent;
+        case res.manualHQMeritIcon:
+            return res.manualHQMerit;
     }
 }
 
@@ -214,6 +217,7 @@ async function react(msg) {
         await msg.react(res.combatReadinessIcon);
         await msg.react(res.communityEventIcon);
         await msg.react(res.jointEventIcon);
+        await msg.react(msg.guild.emojis.find('name', res.manualHQMeritIcon));
         await msg.react(res.canceledIcon);
     } catch (err) {
     }

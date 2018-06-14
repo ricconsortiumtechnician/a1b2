@@ -14,9 +14,13 @@ class UserController {
 
         userManager.findOrCreateUser(parseInt(req.params.robloxId))
             .then((user) => {
-                userManager.addPoints(user, amount)
+                if(amount > 0) {
+                    userManager.addPoints(user, amount);
+                } else {
+                    userManager.deductPoints(user, Math.abs(amount));
+                }
 
-                console.log(`${amount} merit added to ${user._id}`)
+                console.log(`${amount} merit added to ${user._id}`);
 
                 res.status(200);
                 res.json(user);

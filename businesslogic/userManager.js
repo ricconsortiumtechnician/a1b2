@@ -43,7 +43,7 @@ class UserManager {
      *
      * @param user {User}
      * @param amount {int}
-     * @returns {boolean}
+     * @returns {boolean} true if the user was promoted otherwise false.
      */
     addPoints(user, amount) {
         const rankData = getRankData(user.rank);
