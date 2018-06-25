@@ -16,7 +16,7 @@ const res = require('../resources/strings/graduate');
  */
 exports.run = async (bot, msg, args) => {
     // Check minimum amount of parameters.
-    if (args.length < 1) cmdHelper.tooFewArguments(this);
+    if (args.length < 1) cmdHelper.argumentsError(this);
 
     let report = await generateReport(args);
 

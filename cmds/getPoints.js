@@ -12,7 +12,7 @@ const res = require('../resources/strings/getPoints');
 const userDao = require('../datastorage/userDao');
 
 exports.run = async (bot, msg, args) => {
-    if (args.length < 1) cmdHelper.tooFewArguments(this);
+    if (args.length < 1) cmdHelper.argumentsError(this);
 
     const username = args[0];
 

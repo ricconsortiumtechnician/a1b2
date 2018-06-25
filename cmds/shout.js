@@ -8,8 +8,8 @@ const roblox = require('../businesslogic/roblox');
 const res = require('../resources/strings/shout');
 
 exports.run = async (bot, msg, args) => {
-    // Check minimum amount of parameters.
-    if (args.length < 1) cmdHelper.tooFewArguments(this);
+    // Check parameters.
+    if (args.length < 1 || args.length > 2) cmdHelper.argumentsError(this);
 
     let message = cmdHelper.removeColons(args[0]);
 
@@ -31,5 +31,4 @@ exports.run = async (bot, msg, args) => {
 };
 
 exports.conf = res.conf;
-
 exports.help = res.help;

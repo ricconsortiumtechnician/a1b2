@@ -27,6 +27,7 @@ exports.run = async (bot, msg, args) => {
 exports.conf = {
     aliases: [],
     authorizedRoles: [
+        "Captain",
         'Major',
         'Colonel',
         'General',

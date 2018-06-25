@@ -3,11 +3,7 @@
     "aliases": [],
     "authorizedRoles": [
       "Major",
-      "Colonel",
-      "General",
-      "Adjutant General",
-      "Chief of Staff",
-      "Commander"
+      "Command Staff"
     ]
   },
   "help": {

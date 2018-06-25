@@ -17,7 +17,7 @@ const ranks = require('../resources').ranks;
  * @returns {Promise<void>}
  */
 exports.run = async (bot, msg, args) => {
-    if (args.length < 3) cmdHelper.tooFewArguments(this);
+    if (args.length < 3) cmdHelper.argumentsError(this);
 
     const reason = parseReason(args.pop());
     const amount = parseAmount(args.pop());

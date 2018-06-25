@@ -1,6 +1,6 @@
-module.exports = function tooFewArguments(message) {
+module.exports = function argumentsError(message) {
     Error.captureStackTrace(this, this.constructor);
-    this.name = 'too few arguments!';
+    this.name = 'Error parsing arguments!';
     this.message = message;
 };
 

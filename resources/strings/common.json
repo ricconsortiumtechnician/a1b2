@@ -1,6 +1,6 @@
 {
   "errors":{
-    "tooFewArguments":{
+    "argumentsError":{
       "type": "Too few arguments!",
       "message": "The correct usage of this command is: %s"
     }

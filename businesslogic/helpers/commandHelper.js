@@ -4,8 +4,8 @@ const errors = require('../../model/errors');
 
 const res = require('../../resources/strings/common');
 
-exports.tooFewArguments = (cmd) => {
-    throw new errors.tooFewArguments(util.format(res.errors.tooFewArguments.message, cmd.help.usage));
+exports.argumentsError = (cmd) => {
+    throw new errors.tooFewArguments(util.format(res.errors.argumentsError.message, cmd.help.usage));
 };
 
 /**
