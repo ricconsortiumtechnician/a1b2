@@ -18,7 +18,7 @@ router.post('/:robloxId/merit', function (req, res) {
 
 router.get('/', function (req, res){
     res.status(200);
-    res.content('Hello World');
+    res.send('Hello World');
 });
 
 // router.post('/verify', function (req, res) {
