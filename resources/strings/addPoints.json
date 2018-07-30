@@ -13,7 +13,7 @@
   "help": {
     "name": "addPoints",
     "description": "Adds merit to the specified user",
-    "usage": "addmerit <username, username...> <amount> \"<reason>\""
+    "usage": "addmerit <username username...> <amount> \"<reason>\""
   },
   "errors": {
     "amountInvalid": "Amount must be between -4 and 4 and cannot be 0.",

@@ -1,20 +1,20 @@
 [
   {
     "name": "Private",
-    "abbreviation": "PVT",
+    "abbreviation": "R-A",
     "requiredPoints": -1,
     "rankInGroup": 1,
     "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
   },
   {
     "name": "Private First Class",
-    "abbreviation": "PFC",
+    "abbreviation": "R-B",
     "requiredPoints": 10,
     "rankInGroup": 2,
     "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
   },
   {
-    "name": "Rank C",
+    "name": "Sergeant Major",
     "abbreviation": "R-C",
     "requiredPoints": 10,
     "rankInGroup": 3,
@@ -22,21 +22,21 @@
   },
   {
     "name": "Second Lieutenant",
-    "abbreviation": "2LT",
+    "abbreviation": "R-E",
     "requiredPoints": 10,
-    "rankInGroup": 4,
+    "rankInGroup": 5,
     "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
   },
   {
     "name": "First Lieutenant",
-    "abbreviation": "1LT",
+    "abbreviation": "AUT",
     "requiredPoints": 10,
     "rankInGroup": 254,
     "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"
   },
   {
     "name": "Captain",
-    "abbreviation": "CPT",
+    "abbreviation": "EXE",
     "requiredPoints": 10,
     "rankInGroup": 255,
     "thumbnail": "https://t7.rbxcdn.com/dd5fb1c1f86803f5d6b381406f828d13"

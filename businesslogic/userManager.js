@@ -18,12 +18,13 @@ class UserManager {
      * @returns {Promise<User>}
      */
     async findOrCreateUser(robloxId, rank) {
-        let user = await userDao.findById(robloxId);
         rank = rank !== undefined ? rank : await roblox.lib.getRankInGroup(process.env.GROUP_ID, robloxId);
 
         if (isNaN(rank)) throw new errors.invalidArgument("idNotFound");
         if (rank === 0) throw new errors.invalidArgument("notInGroup");
         if (getRank('Private') === rank || rank >= getRank('Second Lieutenant')) throw new errors.invalidArgument("invalidRank");
+
+        let user = await userDao.findById(robloxId);
 
         if (user === undefined) {
             user = new User(robloxId, 0, rank, true, '');
@@ -55,8 +56,8 @@ class UserManager {
         }
 
         user.points = 0;
+        roblox.changeRank(user, rankData.nextRank.rankInGroup);
         user.rank = rankData.nextRank.rankInGroup;
-        roblox.lib.promote(process.env.GROUP_ID, user._id);
         userDao.update(user);
 
         return true;
@@ -79,7 +80,7 @@ class UserManager {
             throw new errors.invalidArgument('belowZero');
         }
 
-        roblox.lib.demote(process.env.GROUP_ID, user._id);
+        roblox.changeRank(user, rankData.prevRank.rankInGroup);
         user.rank = rankData.prevRank.rankInGroup;
         userDao.update(user);
 
