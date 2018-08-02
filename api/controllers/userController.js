@@ -1,3 +1,4 @@
+const userDao = require('./../../datastorage/userDao');
 const userManager = require('../../businesslogic/userManager');
 
 class UserController {
@@ -5,6 +6,19 @@ class UserController {
     constructor() {
         //this.userDao = require('../../common/dao/userDao');
     }
+
+    // GET api/users/{robloxId}
+    getUser(req, res){
+        if(!validate(req, res)) return;
+
+        let id = parseInt(req.params.robloxId);
+
+        userDao.findById(id).then((user) => {
+            res.status(200);
+            res.json(user);
+        });
+    }
+
 
     // POST api/users/{robloxId}/merit
     addMerit(req, res) {

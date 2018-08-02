@@ -16,9 +16,8 @@ router.post('/:robloxId/merit', function (req, res) {
     userController.addMerit(req, res);
 });
 
-router.get('/', function (req, res){
-    res.status(200);
-    res.send('Hello World');
+router.get('/:robloxId', function (req, res){
+    userController.getUser(req,res)
 });
 
 // router.post('/verify', function (req, res) {
