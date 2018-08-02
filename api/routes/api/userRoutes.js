@@ -20,7 +20,7 @@ router.get('/:robloxId', function (req, res){
     userController.getUser(req,res)
 });
 
-router.get('/=', function (req, res){
+router.get('/', function (req, res){
    res.status(200);
    res.json("Hello World")
 });
