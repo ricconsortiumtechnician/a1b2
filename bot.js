@@ -76,7 +76,7 @@ bot.parseRoles = (roleArr, guild) => {
             role = guild.roles.find('name', roleArr[i]);
         }
 
-        if (role === undefined) {
+        if (role === null) {
             throw{
                 type: "Invalid argument!",
                 message: "One of the given roles was not found."
@@ -151,6 +151,7 @@ bot.on("message", msg => {
 
 bot.on("ready", () => {
     log(`${bot.user.username} ready.`);
+    bot.user.setActivity('the Infantry', {type: "WATCHING"});
 });
 
 bot.on("error", console.error);

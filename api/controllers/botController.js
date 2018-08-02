@@ -19,16 +19,18 @@ class BotController {
         let guild = bot.guilds.find("id", process.env.DISCORD_SERVER_ID);
         let channel = guild.channels.find('name', process.env.SHOUT_CHANNEL);
 
-        bot.broadcast(message, guild, roles).catch((err) => {
+        bot.broadcast(message, guild, roles)
+            .then(() => {
+                roblox.shout(message);
+
+                res.status(200);
+                res.json('succes');
+            })
+            .catch((err) => {
             res.status(500);
             res.json(err);
         });
         //}
-
-        roblox.shout(message);
-
-        res.status(200);
-        res.json('succes');
     }
 
     // addVerifyCode(req, res){
