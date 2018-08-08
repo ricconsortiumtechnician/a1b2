@@ -1,5 +1,8 @@
+const User = require('../../model/user');
 const bot = require('../../bot');
 const roblox = require('../../businesslogic/roblox');
+
+const userDao = require('../../datastorage/userDao');
 
 class BotController {
 
@@ -8,16 +11,13 @@ class BotController {
     }
 
     shout(req, res) {
-        if (!validate(req, res)) {
-            return;
-        }
+        if (!validate(req, res)) return;
 
         let message = req.body.message;
         let roles = req.body.roles;
 
         //if (message !== "clear") {
         let guild = bot.guilds.find("id", process.env.DISCORD_SERVER_ID);
-        let channel = guild.channels.find('name', process.env.SHOUT_CHANNEL);
 
         bot.broadcast(message, guild, roles)
             .then(() => {
@@ -27,26 +27,31 @@ class BotController {
                 res.json('succes');
             })
             .catch((err) => {
-            res.status(500);
-            res.json(err);
-        });
+                res.status(500);
+                res.json(err);
+            });
         //}
     }
 
-    // addVerifyCode(req, res){
-    //     if (!this.common.validate(req, res)) {
-    //         return;
-    //     }
-    //
-    //     let code = req.body.code;
-    //     let robloxId = req.body.robloxId;
-    //
-    //     let user = new User(robloxId, 0, 10, true, code);
-    //     UserDao.create(user);
-    //
-    //     res.status(200);
-    //     res.json(user);
-    // }
+    addVerifyCode(req, res) {
+        if (!validate(req, res)) return;
+
+        let code = req.body.code;
+        let robloxId = req.body.robloxId;
+
+        let user = new User(robloxId, 0, 10, true, code);
+
+        userDao.create(user)
+            .then(() => {
+                res.status(200);
+                res.json(user);
+            })
+            .catch(err => {
+                res.status(500);
+                res.json(err);
+            });
+    }
+
 }
 
 function validate(req, res) {

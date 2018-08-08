@@ -13,8 +13,8 @@ router.post('/shout', function (req, res) {
     botController.shout(req, res);
 });
 
-// router.post('/verify', function (req, res) {
-//     botController.addVerifyCode(req, res);
-// })
+router.post('/verify', function (req, res) {
+    botController.addVerifyCode(req, res);
+});
 
 module.exports = router;

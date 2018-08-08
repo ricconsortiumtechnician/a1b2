@@ -41,19 +41,17 @@ class Common {
         });
     }
 
-    insert(collection, obj){
+    async insert(collection, obj){
         return new Promise(function (resolve, reject) {
             mongoClient.connect(url, function (err, db) {
                 if (err) reject(err);
 
                 const dbo = db.db("test");
                 dbo.collection(collection).insertOne(obj, function (err, result) {
-                    if (err) {
-                        reject(
-                            err
-                        );
-                    }
+                    if (err) reject(err);
+
                     db.close();
+                    resolve();
                 });
             });
         });

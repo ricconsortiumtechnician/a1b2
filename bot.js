@@ -176,7 +176,7 @@ function authorize(memberRoles, cmdRoles) {
 }
 
 function handleError(err, msg) {
-    log(err.stack);
+    if(err.stack) log(err.stack);
 
     if (err.message === "User not found") {
         err = {

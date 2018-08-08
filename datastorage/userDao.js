@@ -1,6 +1,8 @@
 const User = require('../model/user');
 const daoCommon = require('./common/daoCommon');
 
+const common = new daoCommon();
+
 class UserDao {
     constructor() {
         this.common = new daoCommon();
@@ -9,21 +11,32 @@ class UserDao {
     findById(robloxId){
         const filter = {_id: robloxId};
 
-        return this.common.findOne("users", filter).then(result => {
-                if (result) {
-                    return result;
-                }
-            }
-        );
+        return findBy(filter);
+    }
+
+    findByCode(code){
+        const filter = {verificationCode: code};
+
+        return findBy(filter);
     }
 
     update(user){
-        return this.common.update("users", user);
+        return common.update("users", user);
     }
 
     create(user){
-        return this.common.insert("users", user);
+        let result = common.insert("users", user);
+        return result;
     }
+}
+
+function findBy(filter){
+    return common.findOne("users", filter)
+        .then(result =>{
+            if(result) return result;
+
+            return null;
+        });
 }
 
 module.exports = new UserDao();
