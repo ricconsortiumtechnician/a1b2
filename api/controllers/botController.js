@@ -33,23 +33,37 @@ class BotController {
         //}
     }
 
-    addVerifyCode(req, res) {
+    async addVerifyCode(req, res) {
         if (!validate(req, res)) return;
 
         let code = req.body.code;
         let robloxId = req.body.robloxId;
 
-        let user = new User(robloxId, 0, 10, true, code);
+        let user = await userDao.findById(robloxId);
 
-        userDao.create(user)
-            .then(() => {
+        if (!user) {
+            user = new User(robloxId, 0, 10, true, code);
+            userDao.create(user)
+                .then(() => {
+                    res.status(200);
+                    res.json(user);
+                })
+                .catch(err => {
+                    res.status(500);
+                    res.json(err);
+                });
+        } else{
+            if(user.verificationCode){
+                res.status(500);
+                res.json("Already verified");
+            } else {
+                user.verificationCode = code;
+                userDao.update(user);
+
                 res.status(200);
                 res.json(user);
-            })
-            .catch(err => {
-                res.status(500);
-                res.json(err);
-            });
+            }
+        }
     }
 
 }
